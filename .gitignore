@@ -1,0 +1,8 @@
+.idea/
+.vscode
+__pycache__
+htmlcov/
+*.py[co]
+*.log
+*.sqlite3
+*.swp

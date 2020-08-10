@@ -1,0 +1,11 @@
+[run]
+source = marvel
+
+[report]
+ignore_errors = True
+omit = 
+	*/tests/*
+	*/admin.py
+	*/__init__.py
+	*/migrations/*
+	*/apps.py
