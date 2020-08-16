@@ -1,14 +1,11 @@
 from rest_framework import generics
 
-from .models import Character
-from .serializers import CharacterSerializer
+from .mixins import CharacterMixinAPIView
 
 
-class CharacterListAPIView(generics.ListAPIView):
-	serializer_class = CharacterSerializer
-	queryset = Character.objects.all()
+class CharacterListAPIView(CharacterMixinAPIView, generics.ListAPIView):
+	pass
 
 
-class CharacterDetailAPIView(generics.RetrieveAPIView):
-	serializer_class = CharacterSerializer
-	queryset = Character.objects.all()
+class CharacterDetailAPIView(CharacterMixinAPIView, generics.RetrieveAPIView):
+	pass
