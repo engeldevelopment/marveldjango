@@ -7,3 +7,8 @@ from .serializers import CharacterSerializer
 class CharacterListAPIView(generics.ListAPIView):
 	serializer_class = CharacterSerializer
 	queryset = Character.objects.all()
+
+
+class CharacterDetailAPIView(generics.RetrieveAPIView):
+	serializer_class = CharacterSerializer
+	queryset = Character.objects.all()

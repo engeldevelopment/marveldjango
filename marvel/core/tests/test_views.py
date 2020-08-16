@@ -23,12 +23,35 @@ class CharacterListAPIViewTest(APITestCase):
 
 		response = self.client.get(self.url)
 
-		self.assertEqual(status.HTTP_200_OK, response.status_code)
 		self.assertEqual(1, response.data['count'])
 
 	def test_if_i_not_create_a_character_the_list_should_be_empty(self):
 
 		response = self.client.get(self.url)
 
-		self.assertEqual(status.HTTP_200_OK, response.status_code)
 		self.assertEqual(0, response.data['count'])
+
+
+class CharacterDetailAPIVIewTest(APITestCase):
+
+	def test_i_can_to_see_detail_of_character(self):
+
+		hulk = CharacterFactory.create(
+			name="Hulk",
+			real_name="Brust Banner",
+			gener='h',
+			origin='Se expuso a rayos gammas'
+		)
+		url = reverse('core:character-detail', kwargs={'pk': hulk.pk})
+
+		response = self.client.get(url)
+
+		self.assertTrue(status.is_success(response.status_code))
+
+	def test_if_not_exists_the_character_should_give_a_404(self):
+
+		url = reverse('core:character-detail', kwargs={'pk': 2})
+
+		response = self.client.get(url)
+
+		self.assertTrue(status.is_client_error(response.status_code))
