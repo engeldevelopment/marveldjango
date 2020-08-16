@@ -8,9 +8,12 @@ migrate:
 test:
 	@python manage.py test
 
-coverage:
+coverage: lint
 	@coverage run manage.py test
 	@coverage report
 
 lint:
 	@flake8 marvel/
+
+rm:
+	@rm -rf htmlcov __pycache__ .coverage

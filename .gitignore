@@ -2,6 +2,8 @@
 .vscode
 __pycache__
 htmlcov/
+.coverage
+coverage.[json|xml]
 *.py[co]
 *.log
 *.sqlite3
