@@ -31,6 +31,20 @@ class CharacterListAPIViewTest(APITestCase):
 
 		self.assertEqual(0, response.data['count'])
 
+	def test_get_all_characters_by_gener(self):
+
+		CharacterFactory.create(
+			name="Hulk",
+			real_name="Brust Banner",
+			gener='h',
+			origin='Se expuso a rayos gammas'
+		)
+		self.url = '/api/marvel/v1/characters/?gener=h'
+
+		response = self.client.get(self.url)
+
+		self.assertEqual(1, response.data['count'])
+
 
 class CharacterDetailAPIVIewTest(APITestCase):
 
@@ -42,9 +56,8 @@ class CharacterDetailAPIVIewTest(APITestCase):
 			gener='h',
 			origin='Se expuso a rayos gammas'
 		)
-		url = reverse('core:character-detail', kwargs={'pk': hulk.pk})
 
-		response = self.client.get(url)
+		response = self.client.get(hulk.get_absolute_url())
 
 		self.assertTrue(status.is_success(response.status_code))
 
