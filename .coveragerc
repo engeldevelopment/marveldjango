@@ -3,6 +3,7 @@ source = marvel
 
 [report]
 ignore_errors = True
+exclude_lines = def __str__
 omit = 
 	*/tests/*
 	*/admin.py
